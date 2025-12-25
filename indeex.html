@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="kk">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CORP-X | Инновациялық Бизнес Шешімдер</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;600;800&family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+
+    <style>
+         :root {
+            --primary-bg: #050505;
+            --accent-blue: #00d2ff;
+            --accent-purple: #9d50bb;
+            --text-main: #e0e0e0;
+            --glass: rgba(255, 255, 255, 0.03);
+            --border: rgba(255, 255, 255, 0.1);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            outline: none;
+        }
+        
+        body {
+            background: var(--primary-bg);
+            color: var(--text-main);
+            font-family: 'Montserrat', sans-serif;
+            overflow-x: hidden;
+        }
+        /* 1. ВИДЕО ЖӘНЕ ГРАДИЕНТ ФОН */
+        
+        .hero-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -2;
+            overflow: hidden;
+        }
+        
+        .hero-bg video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: brightness(0.2) grayscale(0.5);
+        }
+        
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 50% 50%, transparent 0%, var(--primary-bg) 90%);
+            z-index: -1;
+        }
+        /* 2. НАВИГАЦИЯ */
+        
+        nav {
+            position: fixed;
+            width: 100%;
+            padding: 25px 8%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border);
+        }
+        
+        .logo {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.8rem;
+            letter-spacing: 4px;
+            color: #fff;
+            font-weight: 800;
+        }
+        
+        .logo span {
+            color: var(--accent-blue);
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 40px;
+            list-style: none;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: #fff;
+            font-size: 0.8rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            transition: 0.3s;
+        }
+        
+        .nav-links a:hover {
+            color: var(--accent-blue);
+            text-shadow: 0 0 10px var(--accent-blue);
+        }
+        /* 3. HERO SECTION */
+        
+        .hero {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 0 10%;
+        }
+        
+        .hero h1 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: clamp(2rem, 8vw, 5rem);
+            line-height: 1.1;
+            margin-bottom: 20px;
+            background: linear-gradient(to right, #fff, var(--accent-blue));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .hero p {
+            max-width: 600px;
+            font-size: 1.1rem;
+            opacity: 0.7;
+            margin-bottom: 40px;
+        }
+        /* 4. КАРТАЛАР (SERVICES) */
+        
+        .section {
+            padding: 100px 8%;
+        }
+        
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+        
+        .corp-card {
+            background: var(--glass);
+            border: 1px solid var(--border);
+            padding: 40px;
+            border-radius: 20px;
+            transition: 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .corp-card:hover {
+            background: rgba(255, 255, 255, 0.07);
+            border-color: var(--accent-blue);
+            transform: translateY(-10px);
+        }
+        
+        .corp-card h3 {
+            font-family: 'Orbitron', sans-serif;
+            margin-bottom: 15px;
+            color: var(--accent-blue);
+        }
+        /* 5. ФУНКЦИОНАЛДЫ БЛОК (DATA ANALYTICS ИМИТАЦИЯСЫ) */
+        
+        .stats-box {
+            background: linear-gradient(135deg, var(--glass), rgba(0, 210, 255, 0.05));
+            padding: 40px;
+            border-radius: 20px;
+            margin-top: 50px;
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            border: 1px dashed var(--accent-blue);
+        }
+        
+        .stat-item h2 {
+            font-size: 3rem;
+            color: #fff;
+        }
+        
+        .stat-item p {
+            color: var(--accent-blue);
+            font-size: 0.8rem;
+            letter-spacing: 2px;
+        }
+        /* 6. БАЙЛАНЫС (FUTURISTIC FORM) */
+        
+        .contact-flex {
+            display: flex;
+            gap: 50px;
+            flex-wrap: wrap;
+            margin-top: 50px;
+        }
+        
+        .contact-info {
+            flex: 1;
+            min-width: 300px;
+        }
+        
+        form {
+            flex: 1.5;
+            min-width: 300px;
+        }
+        
+        input,
+        textarea {
+            width: 100%;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--border);
+            padding: 15px;
+            color: #fff;
+            margin-bottom: 20px;
+            border-radius: 8px;
+        }
+        
+        input:focus {
+            border-color: var(--accent-blue);
+            box-shadow: 0 0 15px rgba(0, 210, 255, 0.2);
+        }
+        
+        .main-btn {
+            background: linear-gradient(45deg, var(--accent-blue), var(--accent-purple));
+            color: #fff;
+            padding: 15px 40px;
+            border: none;
+            border-radius: 50px;
+            font-family: 'Orbitron', sans-serif;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        
+        .main-btn:hover {
+            box-shadow: 0 0 30px rgba(0, 210, 255, 0.6);
+            transform: scale(1.05);
+        }
+        /* АНИМАЦИЯЛАР */
+        
+        [data-reveal] {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: 1s all ease;
+        }
+        
+        .active-reveal {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        @media (max-width: px) {
+            .nav-links {
+                display: none;
+            }
+            .hero h1 {
+                font-size: 3rem;
+            }
+        }
+        /* Бүкіл сайтқа Аяз ата курсорын қою */
+        
+        html,
+        body {
+            cursor: url('https://img.icons8.com/color/48/000000/santa.png'), auto !important;
+        }
+        /* Ссылкалар мен батырмаларға барғанда да курсор жоғалмауы үшін */
+        
+        a,
+        button,
+        .tab-btn,
+        .accordion-header,
+        input,
+        textarea {
+            cursor: url('https://img.icons8.com/color/48/000000/santa.png'), pointer !important;
+        }
+        /* Бүкіл сайтқа Аяз ата курсорын қою */
+        
+        html,
+        body {
+            cursor: url('https://img.icons8.com/color/48/000000/santa.png'), auto !important;
+        }
+        /* Ссылкалар мен батырмаларға барғанда да курсор жоғалмауы үшін */
+        
+        a,
+        button,
+        .tab-btn,
+        .accordion-header,
+        input,
+        textarea {
+            cursor: url('https://img.icons8.com/color/48/000000/santa.png'), pointer !important;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="hero-bg">
+        <video autoplay muted loop playsinline>
+            <source src="c:\Users\Admin\Downloads\1200 SHOTS COMPOUND SELFMADE _ FireworksMania.mp4" type="video/mp4">
+        </video>
+    </div>
+    <div class="overlay"></div>
+
+    <nav>
+        <div class="logo">CORP<span>-X</span></div>
+        <ul class="nav-links">
+            <li><a href="#home">Басты бет</a></li>
+            <li><a href="#services">Сервистер</a></li>
+            <li><a href="#stats">Көрсеткіштер</a></li>
+            <li><a href="#contact">Байланыс</a></li>
+        </ul>
+    </nav>
+
+    <section class="hero" id="home">
+        <h1 data-reveal>ЦИФРЛЫҚ ТРАНСФОРМАЦИЯ</h1>
+        <p data-reveal>Біз корпоративтік әлемді инновациялық шешімдер мен жасанды интеллект арқылы қайта құрамыз. Сіздің табысыңыз — біздің басымдылық.</p>
+        <div data-reveal>
+            <button class="main-btn" onclick="document.getElementById('services').scrollIntoView({behavior:'smooth'})">Жұмысты бастау</button>
+        </div>
+    </section>
+
+    <section class="section" id="services">
+        <h2 style="font-family:'Orbitron'; margin-bottom:50px; text-align:center;">// БІЗДІҢ СЕРВИСТЕР</h2>
+        <div class="grid">
+            <div class="corp-card" data-reveal>
+                <h3>Strategic Consulting</h3>
+                <p>Бизнестің даму бағытын анықтау және нарықтағы көшбасшылыққа жету жоспары.</p>
+            </div>
+            <div class="corp-card" data-reveal>
+                <h3>Cloud Systems</h3>
+                <p>Күрделі корпоративтік деректерді қауіпсіз бұлттық жүйелерге көшіру және басқару.</p>
+            </div>
+            <div class="corp-card" data-reveal>
+                <h3>AI Integration</h3>
+                <p>Жұмыс процестерін автоматтандыру үшін нейрондық желілерді енгізу.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" id="stats">
+        <div class="stats-box" data-reveal>
+            <div class="stat-item">
+                <h2 class="count" data-target="150">0</h2>
+                <p>ЖҮЗЕГЕ АСҚАН ЖОБАЛАР</p>
+            </div>
+            <div class="stat-item">
+                <h2 class="count" data-target="98">0</h2>
+                <p>ТҰТЫНУШЫЛАР РИЗАШЫЛЫҒЫ %</p>
+            </div>
+            <div class="stat-item">
+                <h2 class="count" data-target="24">0</h2>
+                <p>ЖЫЛДЫҚ ТӘЖІРИБЕ</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" id="contact">
+        <div class="contact-flex">
+            <div class="contact-info" data-reveal>
+                <h2 style="font-family:'Orbitron'; color: var(--accent-blue);">БІЗБЕН БАЙЛАНЫС</h2>
+                <p style="margin-top:20px; line-height:2;">Кеңсе: Алматы қ., Достық даңғылы 100<br> Тел: +7 (777) 000-00-00<br> Email: info@corp-x.kz</p>
+            </div>
+            <form id="corpForm" data-reveal>
+                <input type="text" placeholder="КОМПАНИЯ АТАУЫ" required>
+                <input type="email" placeholder="EMAIL" required>
+                <textarea rows="4" placeholder="СІЗДІҢ СҰРАНЫСЫҢЫЗ..." required></textarea>
+                <button type="submit" class="main-btn" style="width: 100%;">СҰРАНЫС ЖІБЕРУ</button>
+            </form>
+        </div>
+    </section>
+
+    <footer style="padding: 50px; text-align: center; border-top: 1px solid var(--border); font-size: 0.8rem; opacity: 0.6;">
+        <p>&copy; 2025 CORP-X INTERNATIONAL. ЖҮЙЕ СТАТУСЫ: <span style="color:var(--accent-blue)">БЕЛСЕНДІ</span></p>
+    </footer>
+
+    <script>
+        // 1. Анимация (Scroll Reveal)
+        const revealElements = document.querySelectorAll('[data-reveal]');
+        const scrollReveal = function() {
+            for (let i = 0; i < revealElements.length; i++) {
+                if (revealElements[i].getBoundingClientRect().top < window.innerHeight / 1.15) {
+                    revealElements[i].classList.add('active-reveal');
+                }
+            }
+        }
+        window.addEventListener('scroll', scrollReveal);
+        window.addEventListener('load', scrollReveal);
+
+        // 2. Цифрлар анимациясы (Counter)
+        const counters = document.querySelectorAll('.count');
+        counters.forEach(counter => {
+            const updateCount = () => {
+                const target = +counter.getAttribute('data-target');
+                const count = +counter.innerText;
+                const speed = 200;
+                const inc = target / speed;
+
+                if (count < target) {
+                    counter.innerText = Math.ceil(count + inc);
+                    setTimeout(updateCount, 15);
+                } else {
+                    counter.innerText = target + '+';
+                }
+            };
+
+            // Скролл жеткенде қосу үшін бақылау
+            const observer = new IntersectionObserver((entries) => {
+                if (entries[0].isIntersecting) updateCount();
+            });
+            observer.observe(counter);
+        });
+
+        // 3. Форма өңдеу
+        document.getElementById('corpForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            this.innerHTML = `<h3 style="color:var(--accent-blue); text-align:center;">РАХМЕТ! СҰРАНЫС ҚАБЫЛДАНДЫ.</h3>`;
+        });
+        document.addEventListener('mousemove', function(e) {
+            const snowflake = document.createElement('div');
+            snowflake.innerHTML = '❄';
+            snowflake.style.position = 'fixed';
+            snowflake.style.left = e.clientX + 'px';
+            snowflake.style.top = e.clientY + 'px';
+            snowflake.style.pointerEvents = 'none';
+            snowflake.style.color = 'white';
+            snowflake.style.fontSize = Math.random() * 10 + 10 + 'px';
+            snowflake.style.zIndex = '9999';
+            snowflake.style.transition = 'opacity 1s, transform 1s';
+
+            document.body.appendChild(snowflake);
+
+            setTimeout(() => {
+                snowflake.style.opacity = '0';
+                snowflake.style.transform = 'translateY(20px)';
+            }, 10);
+
+            setTimeout(() => {
+                snowflake.remove();
+            }, 1000);
+        });
+    </script>
+</body>
+
+</html>
